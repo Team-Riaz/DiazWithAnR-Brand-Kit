@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FitTrack v1</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>FitTrack v1</h1>
+      <p>Simple daily fitness tracking for personal use</p>
+    </header>
+
+    <nav class="tabs" aria-label="Main Navigation">
+      <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+      <button class="tab-btn" data-tab="plans">Plans</button>
+      <button class="tab-btn" data-tab="insights">Insights</button>
+      <button class="tab-btn" data-tab="photos">Photos</button>
+    </nav>
+
+    <main>
+      <section id="dashboard" class="tab-panel active">
+        <h2>Daily Log</h2>
+
+        <form id="dailyForm" class="card">
+          <h3>Body Stats</h3>
+          <label>Date <input type="date" id="entryDate" required /></label>
+          <label>Weight (kg) <input type="number" id="weight" step="0.1" min="0" /></label>
+          <label>BMI <input type="number" id="bmi" step="0.1" min="0" /></label>
+          <label>Body Fat (%) <input type="number" id="bodyFat" step="0.1" min="0" /></label>
+          <label>Muscle Mass (kg) <input type="number" id="muscleMass" step="0.1" min="0" /></label>
+          <label>Body Water (%) <input type="number" id="bodyWater" step="0.1" min="0" /></label>
+
+          <h3>Workout</h3>
+          <label>
+            What did you do today?
+            <textarea id="workout" rows="3" placeholder="Example: 30 min walk + full body strength"></textarea>
+          </label>
+
+          <h3>Nutrition</h3>
+          <label>
+            What did you eat today?
+            <textarea id="nutrition" rows="3" placeholder="Example: Oats + chicken bowl + salad"></textarea>
+          </label>
+
+          <button type="submit">Save Daily Entry</button>
+        </form>
+
+        <section class="card">
+          <h3>Recent Entries</h3>
+          <ul id="recentEntries" class="list"></ul>
+        </section>
+      </section>
+
+      <section id="plans" class="tab-panel">
+        <h2>Editable Plans</h2>
+
+        <div class="card">
+          <h3>Workout Plan</h3>
+          <textarea id="workoutPlan" rows="6" placeholder="Write your weekly workout plan..."></textarea>
+          <button id="saveWorkoutPlan">Save Workout Plan</button>
+        </div>
+
+        <div class="card">
+          <h3>Nutrition Plan</h3>
+          <textarea id="nutritionPlan" rows="6" placeholder="Write your nutrition plan..."></textarea>
+          <button id="saveNutritionPlan">Save Nutrition Plan</button>
+        </div>
+      </section>
+
+      <section id="insights" class="tab-panel">
+        <h2>Trends & Recommendations</h2>
+
+        <div class="card">
+          <h3>Body Stats Trends</h3>
+          <p class="help-text">Simple line graphs from your saved entries.</p>
+          <div class="graph-wrap">
+            <canvas id="weightChart" width="320" height="160"></canvas>
+            <canvas id="bodyFatChart" width="320" height="160"></canvas>
+            <canvas id="muscleChart" width="320" height="160"></canvas>
+            <canvas id="waterChart" width="320" height="160"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>AI Recommendations (Rule-Based)</h3>
+          <ul id="recommendations" class="list"></ul>
+        </div>
+      </section>
+
+      <section id="photos" class="tab-panel">
+        <h2>Progress Photo Placeholder</h2>
+
+        <div class="card">
+          <p class="help-text">
+            Upload image preview only for now. Future version can add body-stat image analysis.
+          </p>
+          <input type="file" id="photoInput" accept="image/*" />
+          <img id="photoPreview" alt="Uploaded preview" class="hidden" />
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <small>FitTrack v1 - Local data only (saved in your browser)</small>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
